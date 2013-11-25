@@ -2,7 +2,11 @@
 <resources>
 
     <string name="app_name">Location &amp; Mapping</string>
-    <string name="menu_location">Current Location</string>
-    <string name="menu_streetview">Show Streetview</string>
+    <string name="title_activity_google_map">Google Map</string>
+    <string name="title_activity_street_view">Street View</string>
+    <string name="title_activity_location_without_maps">Location Without Maps</string>
+    <string name="menu_google_map">Google Maps API</string>
+    <string name="menu_streetview">Google Streetview</string>
+    <string name="menu_without_map">Location Without Map</string>
 
 </resources>

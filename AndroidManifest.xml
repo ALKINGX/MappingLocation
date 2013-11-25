@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="17"
         android:targetSdkVersion="18" />
 
     <application
@@ -21,6 +21,21 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="edu.sdsmt.thompsonsamson.locationmapping.GoogleMap"
+            android:label="@string/title_activity_google_map" >
+        </activity>
+        <activity
+            android:name="edu.sdsmt.thompsonsamson.locationmapping.StreetView"
+            android:label="@string/title_activity_street_view" >
+        </activity>
+        <activity
+            android:name="edu.sdsmt.thompsonsamson.locationmapping.LocationWithoutMaps"
+            android:label="@string/title_activity_location_without_maps" >
+        </activity>
+        <activity
+            android:name="edu.sdsmt.thompsonsamson.locationmapping.HomeButtons" >
         </activity>
     </application>
 
