@@ -3,7 +3,6 @@ package edu.sdsmt.thompsonsamson.locationmapping;
 import android.os.Bundle;
 import android.app.Activity;
 
-
 public class GoogleMap extends Activity 
 {
 
