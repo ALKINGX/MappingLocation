@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="17"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -33,11 +33,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.sdsmt.thompsonsamson.locationmapping.GoogleMap"
+            android:name="edu.sdsmt.thompsonsamson.locationmapping.MyGoogleMap"
             android:label="@string/title_activity_google_map" >
         </activity>
         <activity
-            android:name="edu.sdsmt.thompsonsamson.locationmapping.StreetView"
+            android:name="edu.sdsmt.thompsonsamson.locationmapping.MyStreetView"
             android:label="@string/title_activity_street_view" >
         </activity>
         <activity
@@ -47,8 +47,6 @@
         <activity
             android:name="edu.sdsmt.thompsonsamson.locationmapping.HomeButtons" >
         </activity>
-        <meta-data android:name="com.google.android.gms.version"
-           android:value="@integer/google_play_services_version" />
         <meta-data
 		    android:name="com.google.android.maps.v2.API_KEY"
 		    android:value="AIzaSyBPy_Fpf-iliAdIA6ixcBJ5M_ZJ8no0J88"/>

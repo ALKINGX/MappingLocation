@@ -23,7 +23,7 @@ public class MainActivity extends Activity
             @Override
             public void onClick(View v) 
             {
-            	Intent googleMap = new Intent(v.getContext(),GoogleMap.class);
+            	Intent googleMap = new Intent(v.getContext(),MyGoogleMap.class);
             	v.getContext().startActivity(googleMap);
             }            
 		});
@@ -33,7 +33,7 @@ public class MainActivity extends Activity
             @Override
             public void onClick(View v) 
             {
-            	Intent streetView = new Intent(v.getContext(),StreetView.class);
+            	Intent streetView = new Intent(v.getContext(),MyStreetView.class);
             	v.getContext().startActivity(streetView);
             }            
 		});
