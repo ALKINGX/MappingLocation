@@ -14,18 +14,18 @@
         android:id="@+id/button_google"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/menu_google_map" />
+        android:text="@string/button_google_map" />
 
     <Button
         android:id="@+id/button_streetview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/menu_streetview" />
+        android:text="@string/button_streetview" />
 
     <Button
         android:id="@+id/button_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/menu_without_map" />
+        android:text="@string/button_without_map" />
     
 </LinearLayout>
