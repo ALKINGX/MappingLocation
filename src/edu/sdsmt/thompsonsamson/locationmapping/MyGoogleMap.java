@@ -2,7 +2,6 @@ package edu.sdsmt.thompsonsamson.locationmapping;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -22,10 +21,9 @@ import android.view.MenuItem;
 
 public class MyGoogleMap extends Activity 
 {
-
 	// some static locations
 	private static final LatLng sdsmtLocation = new LatLng(44.0748167, -103.2058167);
-	private static final LatLng schoolLocation = new LatLng(44.075033, -103.207);
+	private static final LatLng schoolLocation = new LatLng(44.075067, -103.207017);
 	private static final LatLng workLocation = new LatLng(44.07263, -103.20526);
 	private static final LatLng beerLocation = new LatLng(44.08003, -103.22863);
 
@@ -35,7 +33,7 @@ public class MyGoogleMap extends Activity
 	
 	// marker and icon members
 	private int locIcon, schoolIcon, workIcon, beerIcon;
-	private Marker locMarker, schoolMarker, workMarker, beerMarker;
+	private Marker schoolMarker, workMarker, beerMarker;
 	
 	// map elements
 	private Circle circle;
@@ -44,7 +42,6 @@ public class MyGoogleMap extends Activity
 	// camera settings
 	private CameraPosition camOriginal, camIsometric;
 	
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +104,12 @@ public class MyGoogleMap extends Activity
 
 	private void setupObjects()
 	{
-
+		// setup the location marker and add it to the map
+		googleMap.addMarker(new MarkerOptions()
+	    	.position(sdsmtLocation)
+	    	.anchor((float)0.5,(float)0.5)
+	    	.icon(BitmapDescriptorFactory.fromResource(locIcon)));
+		
 		// setup the school marker and add it to the map
 		schoolMarker = googleMap.addMarker(new MarkerOptions()
 	    	.position(schoolLocation)
@@ -129,7 +131,7 @@ public class MyGoogleMap extends Activity
 	    	.position(beerLocation)
 	    	.title("Independent Ale House")
 	    	.icon(BitmapDescriptorFactory.fromResource(beerIcon))
-	    	.snippet("Ok, Brian's second favorite home")
+	    	.snippet("Ok, Brian's \"other\" house!")
 	    	.visible(false));
 		
 		// define the circle and add it to the map
@@ -171,13 +173,7 @@ public class MyGoogleMap extends Activity
 	}
 
 	private void setLocation() 
-	{
-		// setup the location marker
-		locMarker = googleMap.addMarker(new MarkerOptions()
-	    	.position(sdsmtLocation)
-	    	.anchor((float)0.5,(float)0.5)
-	    	.icon(BitmapDescriptorFactory.fromResource(locIcon)));
-		
+	{		
 		googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camOriginal));
 	}
 	
@@ -207,7 +203,7 @@ public class MyGoogleMap extends Activity
 	{
 		schoolMarker.setVisible(!schoolMarker.isVisible());
 		workMarker.setVisible(!workMarker.isVisible());
-		beerMarker.setVisible(!schoolMarker.isVisible());
+		beerMarker.setVisible(!beerMarker.isVisible());
 	}
     
 }
