@@ -1,16 +1,71 @@
 package edu.sdsmt.thompsonsamson.locationmapping;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.widget.TextView;
 
 public class LocationWithoutMaps extends Activity 
 {
+	private LocationListener locListenD;
+	public TextView tvLatitude;
+	public TextView tvLongitude;
 
+	/** Called when the activity is first created. */
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
+	public void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location_without_maps);
+		setContentView(R.layout.activity_location_without_maps);
+		
+		// find the TextViews
+		tvLatitude = (TextView)findViewById(R.id.tvLatitude);
+		tvLongitude = (TextView)findViewById(R.id.tvLongitude);
+		
+		// get handle for LocationManager
+		LocationManager lm =(LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		
+		// connect to the GPS location service
+		Location loc = lm.getLastKnownLocation("gps");
+		
+		// fill in the TextViews
+		tvLatitude.setText(Double.toString(loc.getLatitude()));
+		tvLongitude.setText(Double.toString(loc.getLongitude()));
+		
+		// ask the Location Manager to send us location updates
+		locListenD = new DispLocListener();
+		lm.requestLocationUpdates("gps", 100L, 0.01f, locListenD);
 	}
+	
+	private class DispLocListener implements LocationListener 
+	{
+		@Override
+		public void onLocationChanged(Location location) 
+		{
+			// update TextViews
+			tvLatitude.setText(Double.toString(location.getLatitude()));
+			tvLongitude.setText(Double.toString(location.getLongitude()));
+		}
+		
+		@Override
+		public void onProviderDisabled(String provider) 
+		{
+		}
+		
+		@Override
+		public void onProviderEnabled(String provider) 
+		{
+		}
+		
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) 
+		{
+		}
+	
+	}
+	
 
 }

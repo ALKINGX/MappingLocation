@@ -10,6 +10,7 @@
     <string name="button_without_map">Location Without Map</string>
     <string name="menu_gmap_animate">Toggle Camera</string>
     <string name="menu_gmap_markers">Toggle Markers</string>
+    <string name="menu_gmap_polygon">Toggle Polygon</string>
     <string name="menu_gmap_circle">Toggle Circle</string>
     <string name="menu_gmap_path">Toggle Path</string>
 

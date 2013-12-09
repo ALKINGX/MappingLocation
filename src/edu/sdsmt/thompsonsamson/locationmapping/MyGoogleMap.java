@@ -3,13 +3,15 @@ package edu.sdsmt.thompsonsamson.locationmapping;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import android.app.Activity;
@@ -36,6 +38,7 @@ public class MyGoogleMap extends Activity
 	private Marker schoolMarker, workMarker, beerMarker;
 	
 	// map elements
+	private Polygon polygon;
 	private Circle circle;
 	private Polyline polyline;
 	
@@ -43,30 +46,32 @@ public class MyGoogleMap extends Activity
 	private CameraPosition camOriginal, camIsometric;
 	
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_map);
         
+        // initialize icon drawables
         locIcon = R.drawable.bluedot;
         schoolIcon = R.drawable.university;
         workIcon = R.drawable.workoffice;
         beerIcon = R.drawable.beergarden;
         
-        // setup the map
+        // initialize the map
         if(googleMap == null)
         {	
         	// get the map fragment and the map object
         	mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         	googleMap = mapFragment.getMap();
-			
-        	// set the map
+        	
+        	// make sure the map exists before using
         	if(googleMap != null)
 			{
         		// setup the map objects
-        		setupObjects();
-        		
-        		// setup the location
-        		setLocation();
+                setupObjects();
+                		
+                // setup the location
+                setLocation();
 			}
 		}
     }
@@ -90,6 +95,9 @@ public class MyGoogleMap extends Activity
 		        return true;
 		    case R.id.markers:
 				toggleMarkers();
+		        return true;
+		    case R.id.polygon:
+				togglePolygon();
 		        return true;
 		    case R.id.circle:
 		    	toggleCircle();
@@ -136,16 +144,27 @@ public class MyGoogleMap extends Activity
 		
 		// define the circle and add it to the map
 		circle = googleMap.addCircle(new CircleOptions()
-		.fillColor(Color.parseColor("#255673DB"))
-		.strokeColor(Color.parseColor("#905673DB"))
-		.strokeWidth((float) 2.0)
-		.center(sdsmtLocation)
-		.radius(100)
-		.visible(false));
+			.fillColor(R.color.Blue_25)
+			.strokeColor(R.color.Blue_90)
+			.strokeWidth((float) 2.0)
+			.center(sdsmtLocation)
+			.radius(100)
+			.visible(false));
 		
-		// define the line and add it to the map
+		// define the polygon and add it to the map
+		polygon = googleMap.addPolygon(new PolygonOptions()
+			.add(new LatLng(0, 0), 
+				 new LatLng(0, 0), 
+				 new LatLng(0, 0), 
+				 new LatLng(0, 0), 
+				 new LatLng(0, 0))
+			.strokeColor(Color.RED)
+			.strokeWidth((float) 1.0)
+			.visible(false));		
+		
+		// define the path and add it to the map
 		polyline = googleMap.addPolyline(new PolylineOptions()
-			.color(Color.parseColor("#755673DB"))
+			.color(R.color.Blue_75)
         	.add(new LatLng(44.07626, -103.2073),
         		 new LatLng(44.076616, -103.20715),
         		 new LatLng(44.07803, -103.2104),
@@ -187,6 +206,11 @@ public class MyGoogleMap extends Activity
 		{
 			googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camIsometric));
 		}
+	}
+
+	private void togglePolygon() 
+	{
+		polygon.setVisible(!polygon.isVisible());
 	}
 	
 	private void toggleCircle() 
