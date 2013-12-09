@@ -246,9 +246,9 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060013;
-        public static final int button_google_map=0x7f06001f;
-        public static final int button_streetview=0x7f060020;
-        public static final int button_without_map=0x7f060021;
+        public static final int button_google_map=0x7f060020;
+        public static final int button_streetview=0x7f060021;
+        public static final int button_without_map=0x7f060022;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -316,15 +316,16 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060012;
-        public static final int menu_gmap_animate=0x7f060022;
-        public static final int menu_gmap_circle=0x7f060025;
-        public static final int menu_gmap_markers=0x7f060023;
-        public static final int menu_gmap_path=0x7f060026;
-        public static final int menu_gmap_polygon=0x7f060024;
+        public static final int menu_gmap_animate=0x7f060023;
+        public static final int menu_gmap_circle=0x7f060026;
+        public static final int menu_gmap_markers=0x7f060024;
+        public static final int menu_gmap_path=0x7f060027;
+        public static final int menu_gmap_polygon=0x7f060025;
         public static final int text_latitude=0x7f06001d;
         public static final int text_longitude=0x7f06001c;
+        public static final int text_pending=0x7f06001e;
         public static final int title_activity_google_map=0x7f06001a;
-        public static final int title_activity_location_without_maps=0x7f06001e;
+        public static final int title_activity_location_without_maps=0x7f06001f;
         public static final int title_activity_street_view=0x7f06001b;
     }
     public static final class style {
