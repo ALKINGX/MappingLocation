@@ -7,9 +7,11 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LocationWithoutMaps extends Activity 
 {
+	private LocationManager lm;
 	private LocationListener locListenD;
 	public TextView tvLatitude;
 	public TextView tvLongitude;
@@ -26,7 +28,7 @@ public class LocationWithoutMaps extends Activity
 		tvLongitude = (TextView)findViewById(R.id.tvLongitude);
 		
 		// get handle for LocationManager
-		LocationManager lm =(LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		lm =(LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		
 		// connect to the GPS location service
 		Location loc = lm.getLastKnownLocation("gps");
@@ -39,12 +41,22 @@ public class LocationWithoutMaps extends Activity
 		locListenD = new DispLocListener();
 		lm.requestLocationUpdates("gps", 100L, 0.01f, locListenD);
 	}
+
+	@Override
+	protected void onPause() 
+	{
+		super.onPause();
+		lm.removeUpdates(locListenD);
+	}
 	
 	private class DispLocListener implements LocationListener 
 	{
 		@Override
 		public void onLocationChanged(Location location) 
 		{
+			// make some toast
+			Toast.makeText(getApplicationContext(), "Location Updated", Toast.LENGTH_SHORT).show();
+			
 			// update TextViews
 			tvLatitude.setText(Double.toString(location.getLatitude()));
 			tvLongitude.setText(Double.toString(location.getLongitude()));

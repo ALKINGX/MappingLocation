@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="Blue_75">#755673DB</color>
-    <color name="Blue_25">#255673DB</color>
-    <color name="Blue_90">#905673DB</color>
-    <color name="DkBlue_75">#750004FF</color>
-    <color name="DkBlue_25">#250004FF</color>
-    <color name="Red_75">#75FF0000</color>
-    <color name="Red_25">#25FF0000</color>
-    
+    <color name="Blue">#FF0000FF</color>
 </resources>

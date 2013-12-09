@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,8 +19,8 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
 	
 		Button buttonGoogleMaps;
-		Button buttonStreetView;
 		Button buttonLocationNoMaps;
+		Button buttonStreetView;
 		
 		buttonGoogleMaps = (Button) findViewById(R.id.button_google);
 		buttonGoogleMaps.setOnClickListener(new Button.OnClickListener() {
@@ -33,18 +32,6 @@ public class MainActivity extends Activity
             }            
 		});
 		
-		buttonStreetView = (Button) findViewById(R.id.button_streetview);
-		buttonStreetView.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) 
-            {
-            	startStreetViewIntent(v);
-            	
-            	//Intent streetView = new Intent(v.getContext(),MyStreetView.class);
-            	//v.getContext().startActivity(streetView);
-            }            
-		});
-		
 		buttonLocationNoMaps = (Button) findViewById(R.id.button_location);
 		buttonLocationNoMaps.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -53,6 +40,15 @@ public class MainActivity extends Activity
             	Intent locationWithoutMaps = new Intent(v.getContext(),LocationWithoutMaps.class);
             	v.getContext().startActivity(locationWithoutMaps);
             }
+		});
+
+		buttonStreetView = (Button) findViewById(R.id.button_streetview);
+		buttonStreetView.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) 
+            {
+            	startStreetViewIntent(v);
+            }            
 		});
 	}
 	
@@ -75,9 +71,7 @@ public class MainActivity extends Activity
      	else {
 	        uri = String.format(uri, "44.0761667", "-103.2073333");
         }
-     	
-     	Toast.makeText(this, uri, Toast.LENGTH_LONG).show();
-     	
+     	     	
         Intent streetView = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(streetView);
 	}

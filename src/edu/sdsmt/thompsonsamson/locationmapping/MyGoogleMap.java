@@ -2,6 +2,7 @@ package edu.sdsmt.thompsonsamson.locationmapping;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -38,7 +39,7 @@ public class MyGoogleMap extends Activity
 	private Marker schoolMarker, workMarker, beerMarker;
 	
 	// map elements
-	private Polygon polygon;
+	private Polygon polygon1, polygon2;
 	private Circle circle;
 	private Polyline polyline;
 	
@@ -70,8 +71,19 @@ public class MyGoogleMap extends Activity
         		// setup the map objects
                 setupObjects();
                 		
-                // setup the location
-                setLocation();
+                // set the location
+        		googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camOriginal));
+                
+                // click listener
+                googleMap.setOnMapClickListener(new OnMapClickListener()
+                {
+					@Override
+					public void onMapClick(LatLng loc) 
+					{
+						updateMapFromClick(loc);
+					}
+                });
+                
 			}
 		}
     }
@@ -139,32 +151,47 @@ public class MyGoogleMap extends Activity
 	    	.position(beerLocation)
 	    	.title("Independent Ale House")
 	    	.icon(BitmapDescriptorFactory.fromResource(beerIcon))
-	    	.snippet("Ok, Brian's \"other\" house!")
+	    	.snippet("Ok, Brian's \"other\" office!")
 	    	.visible(false));
 		
 		// define the circle and add it to the map
 		circle = googleMap.addCircle(new CircleOptions()
-			.fillColor(R.color.Blue_25)
-			.strokeColor(R.color.Blue_90)
+			.fillColor(Color.parseColor("#400000FF"))
+			.strokeColor(Color.parseColor("#BE0000FF"))
 			.strokeWidth((float) 2.0)
 			.center(sdsmtLocation)
 			.radius(100)
 			.visible(false));
 		
 		// define the polygon and add it to the map
-		polygon = googleMap.addPolygon(new PolygonOptions()
-			.add(new LatLng(0, 0), 
-				 new LatLng(0, 0), 
-				 new LatLng(0, 0), 
-				 new LatLng(0, 0), 
-				 new LatLng(0, 0))
-			.strokeColor(Color.RED)
+		Polygon polygon = googleMap.addPolygon(new PolygonOptions()
+			.add(new LatLng(44.07615744242147, -103.20732861757278),
+				 new LatLng(44.07583756928344, -103.2060518860817),
+				 new LatLng(44.075434834982005, -103.2062503695488),
+				 new LatLng(44.075704609458285, -103.20736885070801),
+				 new LatLng(44.07591464730614, -103.20743322372437))
 			.strokeWidth((float) 1.0)
-			.visible(false));		
+			.strokeColor(Color.parseColor("#BEFF0000"))
+			.fillColor(Color.parseColor("#40FF0000")));
+		
+		
+		polygon.getId();
+		//	.visible(false));
+		
+		
+		polygon2 = googleMap.addPolygon(new PolygonOptions()
+			.add(new LatLng(44.075434834982005, -103.2062503695488),
+				 new LatLng(44.075704609458285, -103.20736885070801), 
+				 new LatLng(44.0755167, -103.2072833), 
+				 new LatLng(44.0753000, -103.2063500))
+			.strokeWidth((float) 1.0)
+			.strokeColor(Color.parseColor("#BE0000FF"))
+			.fillColor(Color.parseColor("#400000FF"))
+			.visible(false));
 		
 		// define the path and add it to the map
 		polyline = googleMap.addPolyline(new PolylineOptions()
-			.color(R.color.Blue_75)
+			.color(Color.parseColor("#400000FF"))
         	.add(new LatLng(44.07626, -103.2073),
         		 new LatLng(44.076616, -103.20715),
         		 new LatLng(44.07803, -103.2104),
@@ -177,7 +204,7 @@ public class MyGoogleMap extends Activity
 		// setup the original camera position
 		camOriginal = new CameraPosition.Builder()
 			.target(sdsmtLocation)
-			.zoom(15)
+			.zoom(16)
 			.tilt(0)
 			.bearing(0)
 			.build();
@@ -190,12 +217,26 @@ public class MyGoogleMap extends Activity
 			.bearing((float) 330.0)
 			.build();
 	}
-
-	private void setLocation() 
-	{		
-		googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camOriginal));
+	
+	// method to update map based on click
+	private void updateMapFromClick(LatLng loc) 
+	{
+		// get current camera settings
+		CameraPosition oldPos = googleMap.getCameraPosition();
+		
+		// create new camera position
+		CameraPosition newPos = new CameraPosition.Builder()
+			.target(loc)
+			.zoom(oldPos.zoom)
+			.tilt(oldPos.tilt)
+			.bearing(oldPos.bearing)
+			.build();
+		
+		// move the map to the new spot
+		googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(newPos));	
 	}
 	
+	// example of camera views and animation
 	private void toggleCamera()
 	{
 		if(googleMap.getCameraPosition().bearing != 0)
@@ -210,7 +251,8 @@ public class MyGoogleMap extends Activity
 
 	private void togglePolygon() 
 	{
-		polygon.setVisible(!polygon.isVisible());
+		polygon1.setVisible(!polygon1.isVisible());
+		polygon2.setVisible(!polygon2.isVisible());
 	}
 	
 	private void toggleCircle() 

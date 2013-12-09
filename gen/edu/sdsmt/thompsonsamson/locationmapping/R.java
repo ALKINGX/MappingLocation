@@ -129,13 +129,7 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f01000d;
     }
     public static final class color {
-        public static final int Blue_25=0x7f04000b;
-        public static final int Blue_75=0x7f04000a;
-        public static final int Blue_90=0x7f04000c;
-        public static final int DkBlue_25=0x7f04000e;
-        public static final int DkBlue_75=0x7f04000d;
-        public static final int Red_25=0x7f040010;
-        public static final int Red_75=0x7f04000f;
+        public static final int Blue=0x7f04000a;
         public static final int common_action_bar_splitter=0x7f040009;
         /**  Sign-in Button Colors 
          */
@@ -148,8 +142,8 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f040011;
-        public static final int common_signin_btn_text_light=0x7f040012;
+        public static final int common_signin_btn_text_dark=0x7f04000b;
+        public static final int common_signin_btn_text_light=0x7f04000c;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -202,8 +196,8 @@ containing a value of this type.
         public static final int LinearLayout1=0x7f05000a;
         public static final int animate=0x7f05000e;
         public static final int button_google=0x7f05000b;
-        public static final int button_location=0x7f05000d;
-        public static final int button_streetview=0x7f05000c;
+        public static final int button_location=0x7f05000c;
+        public static final int button_streetview=0x7f05000d;
         public static final int circle=0x7f050011;
         public static final int hybrid=0x7f050004;
         public static final int lblLatitude=0x7f050006;
