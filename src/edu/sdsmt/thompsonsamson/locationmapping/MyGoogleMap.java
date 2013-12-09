@@ -164,7 +164,7 @@ public class MyGoogleMap extends Activity
 			.visible(false));
 		
 		// define the polygon and add it to the map
-		Polygon polygon = googleMap.addPolygon(new PolygonOptions()
+		polygon1 = googleMap.addPolygon(new PolygonOptions()
 			.add(new LatLng(44.07615744242147, -103.20732861757278),
 				 new LatLng(44.07583756928344, -103.2060518860817),
 				 new LatLng(44.075434834982005, -103.2062503695488),
@@ -172,12 +172,8 @@ public class MyGoogleMap extends Activity
 				 new LatLng(44.07591464730614, -103.20743322372437))
 			.strokeWidth((float) 1.0)
 			.strokeColor(Color.parseColor("#BEFF0000"))
-			.fillColor(Color.parseColor("#40FF0000")));
-		
-		
-		polygon.getId();
-		//	.visible(false));
-		
+			.fillColor(Color.parseColor("#40FF0000"))
+			.visible(false));
 		
 		polygon2 = googleMap.addPolygon(new PolygonOptions()
 			.add(new LatLng(44.075434834982005, -103.2062503695488),
